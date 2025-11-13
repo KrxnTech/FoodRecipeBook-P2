@@ -90,4 +90,61 @@ app.get('/recipes/:id', (req, res) => {
 })
 
 
+// EDIT ROUTE RENDER THE FORM TO FILL THE NEW DATA
+app.get('/recipes/:id/edit', (req, res) => {
+    // REQ COMING FROM INDEX EJS
+    const recipeId = req.params.id
+    // WRITE SQL QUERY
+    const Q = 'SELECT * FROM recipes WHERE id = ?'
+
+    // SEND THE RESULT 
+    connection.query(Q, [recipeId], (err, result) => {
+        // ERROR HANDLING 
+        if (err) {
+            console.log(err)
+            res.send('ERROR IN DATABASE')
+        } else {
+            // RENDER WITH DATA
+            res.render('recipes/edit.ejs', { recipe: result[0] })
+        }
+    })
+})
+
+// NOW TAKE THE NEW INPUT VALUE FROM THE FORM AND UPDATE THE SQL DATA USING QUERY 
+app.patch('/recipes/:id', (req, res) => {
+    const recipeId = req.params.id // FIND THE ID ALSO 
+    const { name, description, ingredients, instructions } = req.body // TAKING THE FORM INPUT VALUE 
+
+    // WRITE SQL QUERY
+    const Q = 'UPDATE recipes SET name = ? , description = ? , ingredients = ? , instructions = ? WHERE id = ?'
+
+    // MAKE A CONNECTION 
+    connection.query(Q, [name, description, ingredients, instructions, recipeId], (err, result) => {
+        // ERROR HANDLIGN 
+        if (err) {
+            console.log(err)
+            res.send('ERROR IN DATABASE')
+        } else {
+            // ALL SET : ) 
+            console.log('UPDATE SUCCESSFULLY DONE : )')
+            res.redirect('/recipes')
+        }
+    })
+})
+
+// DELETE ROUTE 
+app.delete('/recipes/:id', (req, res) => {
+    const recipeId = req.params.id // TAKE THE ID FROM THE URL 
+    // THIS COMMAND DO ALL THING 
+    const Q = 'DELETE FROM recipes WHERE id = ?' // IT WILL DELETE THAT ID 
+    connection.query(Q, [recipeId], (err, result) => {
+        if (err) {
+            console.log(err)
+            res.send('SOME ERROR IN DATABASE')
+        } else {
+            console.log('DELETE SUCCESSFULLY')
+            res.redirect('/recipes')
+        }
+    })
+})
 

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You r in Edit Recipe Page </title>
+    <style>
+        /* 🌸 Anime Style Edit Page (Textarea Edition) 🌸 */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #ffb6c1, #ffe5b4);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #222;
+        }
+
+        /* Header styling */
+        h4 {
+            text-align: center;
+            font-size: 1.8rem;
+            background-color: #fff;
+            color: #ff5e78;
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+            animation: float 3s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+
+        h4 p {
+            color: #ff9b40;
+            margin: 5px 0 0;
+            font-size: 1rem;
+        }
+
+        /* Form container */
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            border: 2px solid #ffb3c6;
+        }
+
+        /* Labels */
+        label {
+            font-weight: 600;
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        /* Textareas and input */
+        input,
+        textarea {
+            border: 2px solid #ffb3c6;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 1rem;
+            outline: none;
+            resize: vertical;
+            transition: all 0.2s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        textarea {
+            min-height: 80px;
+            max-height: 200px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+              resize: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #ff9b40;
+            box-shadow: 0 0 10px #ffb6c1;
+        }
+
+        /* Button styling */
+        button {
+            background: linear-gradient(90deg, #ff9b40, #ff5e78);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 12px;
+            margin-top: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 94, 120, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 94, 120, 0.5);
+        }
+
+        /* Floating animation for heading */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h4>EDIT PAGE <p>You can Edit any Recipe ✌️</p>
+    </h4>
+    <form action="/recipes/<%= recipe.id %>?_method=PATCH" method="POST">
+        <label>Recipe Name</label>
+        <input type="text" name="name" value="<%=recipe.name%>">
+
+        <label>Description</label>
+        <textarea name="description"><%=recipe.description%></textarea>
+
+        <label>Ingredients</label>
+        <textarea name="ingredients"><%=recipe.ingredients%></textarea>
+
+        <label>Instructions</label>
+        <textarea name="instructions"><%=recipe.instructions%></textarea>
+
+        <button type="submit">Update Recipe</button>
+    </form>
+
+</body>
+
+</html>
