@@ -1,6 +1,6 @@
 # 🍽️ Food Manager
 
-A simple and relaxing recipe management web app where you can add, view, edit, and delete recipes with ease. Designed with a clean UI and smooth user experience that makes cooking feel just a bit less chaotic.
+A simple and relaxing recipe management web app where you can add view edit and delete recipes with ease. Designed with a clean UI and smooth user experience that makes cooking feel just a bit less chaotic.
 
 ---
 
@@ -77,8 +77,8 @@ food-manager/
 
 ---
 
-## ❤️ Why This Project?
+## ❤️ Why This Project
 
-A calm and beginner-friendly recipe manager built to practice CRUD operations, routing, EJS templating, frontend styling, and MySQL integration.
+A calm and beginner-friendly recipe manager built to practice CRUD operations routing EJS templating frontend styling and MySQL integration.
 
 
